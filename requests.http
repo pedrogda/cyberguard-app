@@ -1,0 +1,175 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+
+GET http://localhost:3000/api/events
+
+###
+
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+  "eventType": "LOGIN_FAILED",
+  "username": "admin",
+  "sourceIp": "192.168.9.10",
+  "deviceName": "PC-01"
+}
+
+###
+
+###
+
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+  "eventType": "LOGIN_SUCCESS",
+  "username": "pedro",
+  "sourceIp": "192.168.0.20",
+  "deviceName": "PC-02"
+}
+
+###
+
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+  "eventType": "LOGIN_FAILED",
+  "username": "admin",
+  "sourceIp": "192.168.0.50",
+  "deviceName": "PC-01"
+}
+
+### Buscar todos os alertas
+
+GET http://localhost:3000/api/alerts
+
+###
+
+GET http://localhost:3000/api/alerts/1
+
+### Alterar alerta para INVESTIGATING
+
+PATCH http://localhost:3000/api/alerts/1/status
+Content-Type: application/json
+
+{
+  "status": "INVESTIGATING"
+}
+
+###
+
+PATCH http://localhost:3000/api/alerts/1/status
+Content-Type: application/json
+
+{
+  "status": "RESOLVED"
+}
+
+###
+
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+  "eventType": "LOGIN_FAILED",
+  "username": "pedro",
+  "sourceIp": "10.0.0.50",
+  "deviceName": "PC-01"
+}
+
+###
+
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+  "eventType": "LOGIN_FAILED",
+  "username": "maria",
+  "sourceIp": "10.0.0.50",
+  "deviceName": "PC-01"
+}
+
+###
+
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+  "eventType": "LOGIN_FAILED",
+  "username": "joao",
+  "sourceIp": "10.0.0.50",
+  "deviceName": "PC-01"
+}
+
+###
+
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+  "eventType": "LOGIN_FAILED",
+  "username": "suporte",
+  "sourceIp": "10.0.0.50",
+  "deviceName": "PC-01"
+}
+
+###
+
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+  "eventType": "LOGIN_FAILED",
+  "username": "davi",
+  "sourceIp": "10.0.0.50",
+  "deviceName": "PC-01"
+}
+
+###
+
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+  "eventType": "LOGIN_FAILED",
+  "username": "financeiro",
+  "sourceIp": "10.0.0.99",
+  "deviceName": "PC-FIN-01"
+}
+
+###
+
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+  "eventType": "LOGIN_SUCCESS",
+  "username": "financeiro",
+  "sourceIp": "10.0.0.99",
+  "deviceName": "PC-FIN-01"
+}
+
+### Simular Brute Force
+POST http://localhost:3000/api/simulator/brute-force
+
+### Password Spraying
+POST http://localhost:3000/api/simulator/password-spraying
+
+### Account Compromise
+POST http://localhost:3000/api/simulator/account-compromise
+
+### Registrar usuário
+
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "matheus",
+  "password": "123456"
+}
+
