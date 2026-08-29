@@ -35,7 +35,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/auth/register",
                                 "/api/auth/login",
-                                "/error"
+                                "/error"        
                         ).permitAll()
 
                         .anyRequest().authenticated()
