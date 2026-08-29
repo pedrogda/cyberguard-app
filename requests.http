@@ -192,3 +192,7 @@ Content-Type: application/json
   "password": "qualquercoisa"
 }
 
+###
+
+GET http://localhost:3000/api/events
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXRoZXVzIiwiaWF0IjoxNzg4MDM4MjU4LCJleHAiOjE3ODgwNDE4NTh9.SvBWT8V0kTYZ_YJvshGpLji5EkCoDWgG1TEQZMruKQM

@@ -53,6 +53,9 @@ public class JwtAuthenticationFilter
 
         String username =
                 jwtService.extractUsername(token);
+
+
+
         if (username != null &&
                 SecurityContextHolder
                         .getContext()
@@ -65,6 +68,8 @@ public class JwtAuthenticationFilter
             if (jwtService.isTokenValid(
                     token,
                     userDetails)) {
+
+
 
                 UsernamePasswordAuthenticationToken authToken =
                         new UsernamePasswordAuthenticationToken(
@@ -81,6 +86,8 @@ public class JwtAuthenticationFilter
                 SecurityContextHolder
                         .getContext()
                         .setAuthentication(authToken);
+
+
             }
         }
 

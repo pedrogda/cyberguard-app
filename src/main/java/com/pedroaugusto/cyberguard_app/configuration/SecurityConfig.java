@@ -2,6 +2,7 @@ package com.pedroaugusto.cyberguard_app.configuration;
 
 import com.pedroaugusto.cyberguard_app.model.User;
 import com.pedroaugusto.cyberguard_app.repository.UserRepository;
+import com.pedroaugusto.cyberguard_app.security.JwtAuthenticationFilter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 
 @Configuration
 public class SecurityConfig {
@@ -23,25 +26,30 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     public SecurityFilterChain securityFilterChain(
-            HttpSecurity http) throws Exception {
+            HttpSecurity http,
+            JwtAuthenticationFilter jwtAuthenticationFilter
+    ) throws Exception {
 
         http
                 .csrf(csrf -> csrf.disable())
 
                 .authorizeHttpRequests(auth -> auth
-
                         .requestMatchers(
                                 "/api/auth/register",
                                 "/api/auth/login",
-                                "/error"        
+                                "/error"
                         ).permitAll()
 
                         .anyRequest().authenticated()
                 )
 
-                .httpBasic(Customizer.withDefaults());
+                .addFilterBefore(
+                        jwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class
+                );
 
         return http.build();
     }
@@ -67,5 +75,4 @@ public class SecurityConfig {
                     .build();
         };
     }
-
 }
