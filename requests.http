@@ -5,6 +5,7 @@ GET https://examples.http-client.intellij.net/get
 ###
 
 GET http://localhost:3000/api/events
+Authorization: Basic matheus 123456
 
 ###
 
@@ -171,5 +172,23 @@ Content-Type: application/json
 {
   "username": "matheus",
   "password": "123456"
+}
+
+### Login
+
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "matheus",
+  "password": "123456"
+}
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "pedro",
+  "password": "qualquercoisa"
 }
 

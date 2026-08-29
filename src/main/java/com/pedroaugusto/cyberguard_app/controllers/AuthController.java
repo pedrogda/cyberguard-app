@@ -2,6 +2,8 @@ package com.pedroaugusto.cyberguard_app.controllers;
 
 import com.pedroaugusto.cyberguard_app.model.User;
 import com.pedroaugusto.cyberguard_app.services.AuthService;
+import dto.LoginRequest;
+import dto.LoginResponse;
 import dto.RegisterRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +17,9 @@ public class AuthController {
     private final AuthService authService;
 
     public AuthController(AuthService authService) {
+
         this.authService = authService;
+
     }
 
     @PostMapping("/register")
@@ -23,5 +27,13 @@ public class AuthController {
             @RequestBody RegisterRequest request) {
 
         return authService.register(request);
+    }
+    @PostMapping("/login")
+    public LoginResponse login(
+            @RequestBody LoginRequest request) {
+
+        String token = authService.login(request);
+
+        return new LoginResponse(token);
     }
 }
