@@ -195,4 +195,30 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3000/api/events
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXRoZXVzIiwiaWF0IjoxNzg4MDM4MjU4LCJleHAiOjE3ODgwNDE4NTh9.SvBWT8V0kTYZ_YJvshGpLji5EkCoDWgG1TEQZMruKQM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXRoZXVzIiwiaWF0IjoxNzg4MTczNjA4LCJleHAiOjE3ODgxNzcyMDh9.9jhp-I4was-qzJLm0qch4NGi7pUXquQ7Gz4W2HZQaSs
+
+###
+
+GET http://localhost:3000/api/events
+
+###
+
+GET http://localhost:3000/api/events
+Authorization: Bearer token-qualquer
+
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "usuario-que-nao-existe",
+  "password": "123456"
+}
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "matheus",
+  "password": "senha-errada"
+}

@@ -1,5 +1,7 @@
 package com.pedroaugusto.cyberguard_app.services;
 
+import com.pedroaugusto.cyberguard_app.exception.InvalidPasswordException;
+import com.pedroaugusto.cyberguard_app.exception.UserNotFoundException;
 import com.pedroaugusto.cyberguard_app.model.User;
 import com.pedroaugusto.cyberguard_app.repository.UserRepository;
 import com.pedroaugusto.cyberguard_app.security.JwtService;
@@ -46,11 +48,8 @@ public class AuthService {
 
         User user = userRepository
                 .findByUsername(request.getUsername())
-                .orElseThrow(
-                        () -> new RuntimeException(
-                                "User not found"
-                        )
-                );
+                .orElseThrow(UserNotFoundException::new);
+
 
 
         if (!passwordEncoder.matches(
@@ -58,9 +57,7 @@ public class AuthService {
                 user.getPassword()
         )) {
 
-            throw new RuntimeException(
-                    "Invalid password"
-            );
+            throw new InvalidPasswordException();
         }
 
 
