@@ -2,6 +2,7 @@ package com.pedroaugusto.cyberguard_app.services;
 
 import com.pedroaugusto.cyberguard_app.exception.InvalidPasswordException;
 import com.pedroaugusto.cyberguard_app.exception.UserNotFoundException;
+import com.pedroaugusto.cyberguard_app.exception.UsernameAlreadyExistsException;
 import com.pedroaugusto.cyberguard_app.model.User;
 import com.pedroaugusto.cyberguard_app.repository.UserRepository;
 import com.pedroaugusto.cyberguard_app.security.JwtService;
@@ -30,7 +31,7 @@ public class AuthService {
     public User register(RegisterRequest request) {
 
         if (userRepository.existsByUsername(request.getUsername())) {
-            throw new RuntimeException("Username already exists");
+            throw new UsernameAlreadyExistsException();
         }
 
         User user = new User();
