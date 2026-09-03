@@ -5,6 +5,8 @@ import com.pedroaugusto.cyberguard_app.model.AlertStatus;
 import com.pedroaugusto.cyberguard_app.model.AlertType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface AlertRepository extends JpaRepository<Alert, Long> {
     boolean existsByTypeAndUsernameAndSourceIpAndStatus(
             AlertType type,
@@ -18,4 +20,5 @@ public interface AlertRepository extends JpaRepository<Alert, Long> {
             String sourceIp,
             AlertStatus status
     );
+    List<Alert> findAllByOrderByCreatedAtDesc();
 }

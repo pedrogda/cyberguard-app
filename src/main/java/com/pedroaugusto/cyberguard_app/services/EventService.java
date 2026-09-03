@@ -5,6 +5,7 @@ import com.pedroaugusto.cyberguard_app.model.SecurityEvent;
 import com.pedroaugusto.cyberguard_app.repository.SecurityEventRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,12 +21,12 @@ public class EventService {
    }
 
    public List<SecurityEvent> getAllEvents() {
-      return eventRepository.findAll();
+      return eventRepository.findAllByOrderByTimestampDesc();
    }
 
    public SecurityEvent createEvent(SecurityEvent event) {
 
-      event.setTimestamp(LocalDateTime.now());
+      event.setTimestamp(Instant.now());
 
       SecurityEvent savedEvent = eventRepository.save(event);
 

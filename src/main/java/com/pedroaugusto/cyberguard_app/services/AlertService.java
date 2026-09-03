@@ -4,6 +4,7 @@ import com.pedroaugusto.cyberguard_app.model.*;
 import com.pedroaugusto.cyberguard_app.repository.AlertRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -39,13 +40,13 @@ public class AlertService {
         alert.setUsername(event.getUsername());
         alert.setSourceIp(event.getSourceIp());
 
-        alert.setCreatedAt(LocalDateTime.now());
+        alert.setCreatedAt(Instant.now());
 
         alertRepository.save(alert);
     }
     
     public List<Alert> getAllAlerts() {
-        return alertRepository.findAll();
+        return alertRepository.findAllByOrderByCreatedAtDesc();
     }
 
     public Alert getAlertById(Long id) {
@@ -87,7 +88,7 @@ public class AlertService {
 
         alert.setSourceIp(event.getSourceIp());
 
-        alert.setCreatedAt(LocalDateTime.now());
+        alert.setCreatedAt(Instant.now());
 
         alertRepository.save(alert);
     }
@@ -122,7 +123,7 @@ public class AlertService {
 
         alert.setSourceIp(event.getSourceIp());
 
-        alert.setCreatedAt(LocalDateTime.now());
+        alert.setCreatedAt(Instant.now());
 
         alertRepository.save(alert);
     }

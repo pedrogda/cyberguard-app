@@ -157,12 +157,14 @@ Content-Type: application/json
 
 ### Simular Brute Force
 POST http://localhost:3000/api/simulator/brute-force
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZXZhbGlkYWNhb0BlbWFpbC5jb20iLCJpYXQiOjE3ODg0NzcwODcsImV4cCI6MTc4ODQ4MDY4N30._pzfTW4idnule5RJKW2dMai9x2DXd66NPjIF7cgkTFI
 
 ### Password Spraying
 POST http://localhost:3000/api/simulator/password-spraying
 
 ### Account Compromise
 POST http://localhost:3000/api/simulator/account-compromise
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZXZhbGlkYWNhb0BlbWFpbC5jb20iLCJpYXQiOjE3ODg0NzYyMzYsImV4cCI6MTc4ODQ3OTgzNn0.oFYJOCyKdIMGoEkDigBrU5y5OqQATbMoJr3TmxrC8pw
 
 ### Registrar usuário
 
@@ -303,12 +305,13 @@ Content-Type: application/json
 
 ### 5. Rota protegida - eventos
 GET http://localhost:3000/api/events
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZXZhbGlkYWNhb0BlbWFpbC5jb20iLCJpYXQiOjE3ODg0Njg3NTEsImV4cCI6MTc4ODQ3MjM1MX0.WLozgCRAD0x9gX8XQOezplGNJPAhp4cJdIhF2Q0A2ao
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZXZhbGlkYWNhb0BlbWFpbC5jb20iLCJpYXQiOjE3ODg0NzcwODcsImV4cCI6MTc4ODQ4MDY4N30._pzfTW4idnule5RJKW2dMai9x2DXd66NPjIF7cgkTFI
 
 
 ### 6. Buscar alertas
 GET http://localhost:3000/api/alerts
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZXZhbGlkYWNhb0BlbWFpbC5jb20iLCJpYXQiOjE3ODg0Njg3NTEsImV4cCI6MTc4ODQ3MjM1MX0.WLozgCRAD0x9gX8XQOezplGNJPAhp4cJdIhF2Q0A2ao
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZXZhbGlkYWNhb0BlbWFpbC5jb20iLCJpYXQiOjE3ODg0NzcwODcsImV4cCI6MTc4ODQ4MDY4N30._pzfTW4idnule5RJKW2dMai9x2DXd66NPjIF7cgkTFI
+
 
 
 ### 7. Alterar status do alerta - válido
@@ -329,3 +332,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZXZhbGlkYWNhb0BlbWFpb
 {
   "status": null
 }
+
+###
+
+POST https://cyberguard-backend-hqaj.onrender.com/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "pedro@email.com",
+  "password": "123456"
+}
+
+###
+
+GET https://cyberguard-backend-hqaj.onrender.com/api/events
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwZWRyb0BlbWFpbC5jb20iLCJpYXQiOjE3ODg0NzM2NjAsImV4cCI6MTc4ODQ3NzI2MH0.gvw1HRpECzl3FtcDe2ZM95p9_rCTuQweNL7pk0KcvCw

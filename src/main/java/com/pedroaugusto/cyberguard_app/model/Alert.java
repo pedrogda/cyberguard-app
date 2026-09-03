@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @NoArgsConstructor
 @Setter
@@ -31,7 +31,7 @@ public class Alert {
 
     private String sourceIp;
 
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 
 
 

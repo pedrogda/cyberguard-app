@@ -3,6 +3,7 @@ import com.pedroaugusto.cyberguard_app.model.EventType;
 import  com.pedroaugusto.cyberguard_app.model.SecurityEvent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,13 +15,15 @@ public interface SecurityEventRepository extends JpaRepository<SecurityEvent, Lo
             EventType eventType,
             String username,
             String sourceIp,
-            LocalDateTime timestamp
+            Instant timestamp
     );
 
     List<SecurityEvent> findByEventTypeAndSourceIpAndTimestampAfter(
             EventType eventType,
             String sourceIp,
-            LocalDateTime timestamp
+            Instant timestamp
     );
+
+    List<SecurityEvent> findAllByOrderByTimestampDesc();
 
 }

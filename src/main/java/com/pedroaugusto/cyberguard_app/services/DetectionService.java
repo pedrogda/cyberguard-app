@@ -4,8 +4,7 @@ import com.pedroaugusto.cyberguard_app.model.EventType;
 import com.pedroaugusto.cyberguard_app.model.SecurityEvent;
 import com.pedroaugusto.cyberguard_app.repository.SecurityEventRepository;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -35,8 +34,8 @@ public class DetectionService {
     }
     private void checkBruteForce(SecurityEvent event) {
 
-        LocalDateTime startTime =
-                event.getTimestamp().minusMinutes(2);
+        Instant startTime =
+                event.getTimestamp().minusSeconds(120);
 
         long failedAttempts =
                 eventRepository
@@ -54,8 +53,8 @@ public class DetectionService {
 
     private void checkPasswordSpraying(SecurityEvent event) {
 
-        LocalDateTime startTime =
-                event.getTimestamp().minusMinutes(3);
+        Instant startTime =
+                event.getTimestamp().minusSeconds(180);
 
         List<SecurityEvent> recentEvents =
                 eventRepository.findByEventTypeAndSourceIpAndTimestampAfter(
@@ -76,8 +75,8 @@ public class DetectionService {
 
     private void checkPossibleAccountCompromise(SecurityEvent event) {
 
-        LocalDateTime startTime =
-                event.getTimestamp().minusMinutes(5);
+        Instant startTime =
+                event.getTimestamp().minusSeconds(300);
 
         long failedAttempts =
                 eventRepository
