@@ -64,10 +64,10 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService(
             UserRepository userRepository) {
 
-        return username -> {
+        return email -> {
 
             User user = userRepository
-                    .findByUsername(username)
+                    .findByEmail(email)
                     .orElseThrow(
                             () -> new UsernameNotFoundException(
                                     "User not found"
@@ -75,7 +75,7 @@ public class SecurityConfig {
                     );
 
             return org.springframework.security.core.userdetails.User
-                    .withUsername(user.getUsername())
+                    .withUsername(user.getEmail())
                     .password(user.getPassword())
                     .roles("USER")
                     .build();

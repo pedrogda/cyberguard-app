@@ -33,10 +33,17 @@ public class AuthService {
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new UsernameAlreadyExistsException();
         }
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
 
         User user = new User();
 
         user.setUsername(request.getUsername());
+
+        user.setEmail(
+                request.getEmail().trim().toLowerCase()
+        );
 
         user.setPassword(
                 passwordEncoder.encode(request.getPassword())
@@ -47,11 +54,13 @@ public class AuthService {
 
     public String login(LoginRequest request) {
 
+        String email = request.getEmail()
+                .trim()
+                .toLowerCase();
+
         User user = userRepository
-                .findByUsername(request.getUsername())
+                .findByEmail(email)
                 .orElseThrow(UserNotFoundException::new);
-
-
 
         if (!passwordEncoder.matches(
                 request.getPassword(),
@@ -63,7 +72,7 @@ public class AuthService {
 
 
         return jwtService.generateToken(
-                user.getUsername()
+                user.getEmail()
         );
     }
 }

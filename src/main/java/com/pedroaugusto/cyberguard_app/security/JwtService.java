@@ -39,7 +39,7 @@ public class JwtService {
                 secretKey.getBytes(StandardCharsets.UTF_8)
         );
     }
-    public String extractUsername(String token) {
+    public String extractEmail(String token) {
         return extractClaims(token).getSubject();
     }
     private Claims extractClaims(String token) {
@@ -53,7 +53,7 @@ public class JwtService {
             String token,
             UserDetails userDetails) {
 
-        String username = extractUsername(token);
+        String username = extractEmail(token);
 
         return username.equals(userDetails.getUsername())
                 && !isTokenExpired(token);

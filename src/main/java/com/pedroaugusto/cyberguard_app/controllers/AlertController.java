@@ -4,6 +4,8 @@ package com.pedroaugusto.cyberguard_app.controllers;
 import com.pedroaugusto.cyberguard_app.model.Alert;
 import com.pedroaugusto.cyberguard_app.services.AlertService;
 import dto.AlertStatusRequest;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,13 +30,17 @@ public class AlertController {
     }
 
     @PatchMapping("/{id}/status")
-    public Alert updateStatus(
+    public ResponseEntity<Alert> updateStatus(
             @PathVariable Long id,
-            @RequestBody AlertStatusRequest request) {
+            @Valid @RequestBody AlertStatusRequest request) {
+        {
 
-        return alertService.updateStatus(
-                id,
-                request.getStatus()
-        );
+            Alert updatedAlert = alertService.updateStatus(
+                    id,
+                    request.getStatus()
+            );
+
+            return ResponseEntity.ok(updatedAlert);
     }
+}
 }

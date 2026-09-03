@@ -5,6 +5,9 @@ import com.pedroaugusto.cyberguard_app.services.AuthService;
 import dto.LoginRequest;
 import dto.LoginResponse;
 import dto.RegisterRequest;
+import dto.RegisterResponse;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,17 +26,28 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public User register(
-            @RequestBody RegisterRequest request) {
+    public ResponseEntity<RegisterResponse> register(
+            @Valid @RequestBody RegisterRequest request) {
 
-        return authService.register(request);
+        User user = authService.register(request);
+
+        RegisterResponse response =
+                new RegisterResponse(
+                        user.getId(),
+                        user.getUsername(),
+                        user.getEmail()
+                );
+
+        return ResponseEntity.ok(response);
     }
     @PostMapping("/login")
-    public LoginResponse login(
-            @RequestBody LoginRequest request) {
+    public ResponseEntity<LoginResponse> login(
+            @Valid @RequestBody LoginRequest request) {
 
         String token = authService.login(request);
 
-        return new LoginResponse(token);
+        return ResponseEntity.ok(
+                new LoginResponse(token)
+        );
     }
 }

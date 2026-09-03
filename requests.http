@@ -222,3 +222,110 @@ Content-Type: application/json
   "username": "matheus",
   "password": "senha-errada"
 }
+
+###
+
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testeEmail",
+  "email": "teste@email.com",
+  "password": "123456"
+}
+
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "teste@email.com",
+  "password": "123456"
+}
+
+###
+GET http://localhost:3000/api/events
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZUBlbWFpbC5jb20iLCJpYXQiOjE3ODg0NjM4MTYsImV4cCI6MTc4ODQ2NzQxNn0.tLRRGqIuA_WHx_LT-XG917kAv_royGWMzAsTGSyEep4
+
+###
+
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testeResponse",
+  "email": "response@teste.com",
+  "password": "123456"
+}
+
+
+### 1. Cadastro válido
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testevalidacao",
+  "email": "testevalidacao@email.com",
+  "password": "123456"
+}
+
+
+### 2. Cadastro inválido - username vazio, email inválido e senha vazia
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "",
+  "email": "email-invalido",
+  "password": ""
+}
+
+
+### 3. Login válido
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "testevalidacao@email.com",
+  "password": "123456"
+}
+
+
+### 4. Login inválido - email inválido e senha vazia
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "abc",
+  "password": ""
+}
+
+
+### 5. Rota protegida - eventos
+GET http://localhost:3000/api/events
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZXZhbGlkYWNhb0BlbWFpbC5jb20iLCJpYXQiOjE3ODg0Njg3NTEsImV4cCI6MTc4ODQ3MjM1MX0.WLozgCRAD0x9gX8XQOezplGNJPAhp4cJdIhF2Q0A2ao
+
+
+### 6. Buscar alertas
+GET http://localhost:3000/api/alerts
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZXZhbGlkYWNhb0BlbWFpbC5jb20iLCJpYXQiOjE3ODg0Njg3NTEsImV4cCI6MTc4ODQ3MjM1MX0.WLozgCRAD0x9gX8XQOezplGNJPAhp4cJdIhF2Q0A2ao
+
+
+### 7. Alterar status do alerta - válido
+PATCH http://localhost:3000/api/alerts/1/status
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZXZhbGlkYWNhb0BlbWFpbC5jb20iLCJpYXQiOjE3ODg0Njg3NTEsImV4cCI6MTc4ODQ3MjM1MX0.WLozgCRAD0x9gX8XQOezplGNJPAhp4cJdIhF2Q0A2ao
+
+{
+  "status": "RESOLVED"
+}
+
+
+### 8. Alterar status do alerta - inválido
+PATCH http://localhost:3000/api/alerts/1/status
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0ZXZhbGlkYWNhb0BlbWFpbC5jb20iLCJpYXQiOjE3ODg0Njg3NTEsImV4cCI6MTc4ODQ3MjM1MX0.WLozgCRAD0x9gX8XQOezplGNJPAhp4cJdIhF2Q0A2ao
+
+{
+  "status": null
+}
